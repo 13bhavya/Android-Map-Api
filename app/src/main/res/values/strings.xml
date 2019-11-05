@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="app_name">Assign_Map</string>
+    <string name="brand_activity">Choose Your Brand</string>
+    <string name="puma">Puma</string>
+    <string name="adidas">Adidas</string>
+    <string name="nike">Nike</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="scarborough">Scarborough</string>
+    <string name="northyork">NorthYork</string>
+    <string name="markham">Markham</string>
+</resources>

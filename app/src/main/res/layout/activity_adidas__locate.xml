@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Adidas_Locate">
+
+    <ImageView
+        android:contentDescription="NikeImage"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/adidas" />
+
+    <TextView
+        android:id="@+id/scar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="@string/scarborough"
+        android:gravity="center"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/northyork"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="@string/northyork"
+        android:gravity="center"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/markham"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="@string/markham"
+        android:gravity="center"
+        android:textSize="24sp"/>
+
+</LinearLayout>
