@@ -2,40 +2,52 @@ package com.example.assign_map;
 
 public class InfoWindowData {
 
-    private String image;
-    private String hotel;
-    private String food;
-    private String transport;
+    private String brand;
+    private String city;
+    private String address;
+    private String phone;
+    private String img;
 
-    public String getImage() {
-        return image;
+    public InfoWindowData() {
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public String getImg() {
+        return img;
     }
 
-    public String getHotel() {
-        return hotel;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public void setHotel(String hotel) {
-        this.hotel = hotel;
+    public String getBrand() {
+        return brand;
     }
 
-    public String getFood() {
-        return food;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public void setFood(String food) {
-        this.food = food;
+    public String getCity() {
+        return city;
     }
 
-    public String getTransport() {
-        return transport;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public void setTransport(String transport) {
-        this.transport = transport;
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

@@ -11,4 +11,7 @@
     <string name="scarborough">Scarborough</string>
     <string name="northyork">NorthYork</string>
     <string name="markham">Markham</string>
+    <string name="city">City</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
 </resources>

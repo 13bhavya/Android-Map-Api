@@ -1,10 +1,13 @@
 package com.example.assign_map;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -14,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -28,7 +32,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.InfoWindowAdapter{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private static final String TAG = "MapsActivity";
     private GoogleMap mMap;
@@ -36,10 +40,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private Context context;
 
-    public MapsActivity(Context ctx){
+    public MapsActivity(Context ctx) {
         context = ctx;
     }
 
+    public MapsActivity() {
+
+    }
 
 
     @Override
@@ -49,8 +56,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
+
+        /*if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            //mMap.setMyLocationEnabled(true);
+            //mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        } else {
+            Toast.makeText(MapsActivity.this,"Request denied",Toast.LENGTH_LONG).show();
+            // Show rationale and request permission.
+        }*/
         mapFragment.getMapAsync(this);
     }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -65,31 +83,59 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.setMinZoomPreference(11);
+        mMap.setMinZoomPreference(5);
 
-        LatLng snow = new LatLng(47.5287132, -121.8253906);
+        mMap.setMyLocationEnabled(true);
+        //mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(snow)
-                .title("Snowqualmie Falls")
-                .snippet("Snoqualmie Falls is located 25 miles east of Seattle.")
-                .icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE));
+
+        LatLng puma_1 = new LatLng(43.7671904, -79.3584039);
+        LatLng puma_2 = new LatLng(43.7349687, -79.3448839);
+
+        //MarkerOptions markerOptions = new MarkerOptions();
+        Marker m1 = googleMap.addMarker(new MarkerOptions()
+                .position(puma_1)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
         InfoWindowData info = new InfoWindowData();
-        info.setImage("snowqualmie");
-        info.setHotel("Hotel : excellent hotels available");
-        info.setFood("Food : all types of restaurants available");
-        info.setTransport("Reach the site by bus, car and train.");
+        info.setImg("puma_logo.png");
+        info.setBrand("Puma Showroom");
+        info.setAddress("Foot Locker, 1800 Sheppard Ave E Space 1051,  ON M2J 5A7");
+        info.setCity("North York");
+        info.setPhone("986 545 8532");
 
-        MapsActivity customInfoWindow = new MapsActivity(this);
+
+
+        CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(this);
         mMap.setInfoWindowAdapter(customInfoWindow);
 
-        Marker m = mMap.addMarker(markerOptions);
-        m.setTag(info);
-        m.showInfoWindow();
+        Marker m2 = googleMap.addMarker(new MarkerOptions()
+                .position(puma_2)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(snow));
+        InfoWindowData info1 = new InfoWindowData();
+        info1.setImg("k");
+        info1.setBrand("Puma Showroom");
+        info1.setAddress("1 Eglinton Square Bl, Unit 55, Toronto, ON M1L 2K1");
+        info1.setCity("Eglinton");
+        info1.setPhone("(416) 751-9264");
 
+
+
+        CustomInfoWindowGoogleMap customInfoWindow1 = new CustomInfoWindowGoogleMap(this);
+        mMap.setInfoWindowAdapter(customInfoWindow1);
+
+        m1.setTag(info);
+        m1.showInfoWindow();
+
+        m2.setTag(info1);
+        m2.showInfoWindow();
+
+        //Marker m = mMap.addMarker(markerOptions);
+
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(puma_1,12f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(puma_2,12f));
     }
        /* // Add a marker in Sydney and move the camera
         LatLng nik = new LatLng(43.777748, -79.344498);
@@ -115,7 +161,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });*/
 
-
+       /*
     @Override
     public View getInfoWindow(Marker marker) {
         return null;
@@ -124,15 +170,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public View getInfoContents(Marker marker) {
 
-        View view = ((Activity)context).getLayoutInflater().inflate(R.layout.custominfowindow, null);
+        View view = ((Activity) context).getLayoutInflater().inflate(R.layout.custominfowindow, null);
 
-        TextView name_tv = view.findViewById(R.id.name);
-        TextView details_tv = view.findViewById(R.id.details);
+        TextView brand_tv = view.findViewById(R.id.brand_name);
+        TextView city_tv = view.findViewById(R.id.city);
         ImageView img = view.findViewById(R.id.pic);
 
-        TextView hotel_tv = view.findViewById(R.id.hotels);
-        TextView food_tv = view.findViewById(R.id.food);
-        TextView transport_tv = view.findViewById(R.id.transport);
+        TextView address_tv = view.findViewById(R.id.address);
+        TextView phone_tv = view.findViewById(R.id.phone);
 
         name_tv.setText(marker.getTitle());
         details_tv.setText(marker.getSnippet());
@@ -147,7 +192,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         food_tv.setText(infoWindowData.getFood());
         transport_tv.setText(infoWindowData.getTransport());
         return null;
-    }
+
+        */
 }
 
 
