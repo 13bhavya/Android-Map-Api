@@ -1,6 +1,5 @@
 <resources>
-
-    <string name="app_name">Assign_Map</string>
+    <string name="title_activity_maps">Map</string>
     <string name="brand_activity">Choose Your Brand</string>
     <string name="puma">Puma</string>
     <string name="adidas">Adidas</string>
