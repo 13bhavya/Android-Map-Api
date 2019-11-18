@@ -15,27 +15,30 @@
         android:layout_gravity="center"
         app:srcCompat="@drawable/adidas" />
 
-    <TextView
+    <Button
         android:id="@+id/scar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="@string/scarborough"
+        android:onClick="ClickButton"
         android:gravity="center"
         android:textSize="24sp"/>
 
-    <TextView
-        android:id="@+id/northyork"
+    <Button
+        android:id="@+id/north"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="@string/northyork"
+        android:onClick="ClickButton"
         android:gravity="center"
         android:textSize="24sp"/>
 
-    <TextView
-        android:id="@+id/markham"
+    <Button
+        android:id="@+id/markh"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="@string/markham"
+        android:onClick="ClickButton"
         android:gravity="center"
         android:textSize="24sp"/>
 

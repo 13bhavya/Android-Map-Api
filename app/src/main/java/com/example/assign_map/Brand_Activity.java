@@ -25,6 +25,7 @@ public class Brand_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Brand_Activity.this,Puma_Locate.class);
+                i.putExtra("BRAND","Puma");
                 startActivity(i);
             }
         });
@@ -32,6 +33,7 @@ public class Brand_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Brand_Activity.this,Adidas_Locate.class);
+                i.putExtra("BRAND","Adidas");
                 startActivity(i);
             }
         });
@@ -39,6 +41,7 @@ public class Brand_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Brand_Activity.this,Nike_Locate.class);
+                i.putExtra("BRAND","Nike");
                 startActivity(i);
             }
         });

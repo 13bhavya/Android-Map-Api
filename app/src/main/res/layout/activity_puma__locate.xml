@@ -15,30 +15,30 @@
         android:layout_gravity="center"
         app:srcCompat="@drawable/puma" />
 
-    <TextView
+    <Button
         android:id="@+id/scar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:gravity="center"
-        android:onClick="Scarboro"
+        android:onClick="ClickButton"
         android:text="@string/scarborough"
         android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/northyork"
+    <Button
+        android:id="@+id/north"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:gravity="center"
-        android:onClick="northyork"
+        android:onClick="ClickButton"
         android:text="@string/northyork"
         android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/markham"
+    <Button
+        android:id="@+id/markh"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:gravity="center"
-        android:onClick="markham"
+        android:onClick="ClickButton"
         android:text="@string/markham"
         android:textSize="24sp" />
 
