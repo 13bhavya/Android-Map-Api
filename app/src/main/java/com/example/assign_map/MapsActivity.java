@@ -11,8 +11,6 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -22,6 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -37,6 +36,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Context context;
     public static String MapArea;
     public static String Brand;
+    public static String City;
 
     public MapsActivity(Context ctx) {
         context = ctx;
@@ -70,6 +70,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         Intent intent = getIntent();
+        City = intent.getStringExtra("City");
         MapArea = intent.getStringExtra("Map");
         Brand = intent.getStringExtra("BRAND");
 
@@ -130,12 +131,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     String addLine = loc.getAddressLine(idx);
                     locInfo = String.format("%s", addLine);
                 }
-                mMap.addMarker(new MarkerOptions().
+
+                MarkerOptions markerOptions = new MarkerOptions();
+                Marker m1 = mMap.addMarker(new MarkerOptions().
                         position(store)
                         .snippet(Brand)
                         .title(locInfo)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.icons8)));
 
+                InfoWindowData info = new InfoWindowData();
+                info.setImg("ccc");
+                info.setBrand(Brand);
+                info.setAddress(locInfo);
+                info.setCity(City);
+                info.setPhone("986 545 8532");
+
+                CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(this);
+                mMap.setInfoWindowAdapter(customInfoWindow);
+
+                m1.setTag(info);
+                m1.showInfoWindow();
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(store, 12f));
             }
         } catch (IOException e) {

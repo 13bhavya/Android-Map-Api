@@ -21,6 +21,7 @@ public class Brand_Activity extends AppCompatActivity {
         adidas = findViewById(R.id.rel2);
         nike = findViewById(R.id.rel3);
 
+        //OnClick Listener to goto specific Brand Activity
         puma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

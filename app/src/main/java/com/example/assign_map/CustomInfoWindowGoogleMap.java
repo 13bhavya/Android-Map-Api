@@ -27,9 +27,6 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
 
     }*/
 
-
-
-
     @Override
     public View getInfoWindow(Marker marker) {
         return null;
@@ -50,7 +47,7 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
         InfoWindowData infoWindowData = (InfoWindowData) marker.getTag();
 
         int imageId = context.getResources().getIdentifier(infoWindowData.getImg().toLowerCase(),
-                "puma_logo.png", context.getPackageName());
+                "zzz", context.getPackageName());
         img.setImageResource(imageId);
 
         brand_Name.setText(infoWindowData.getBrand());
